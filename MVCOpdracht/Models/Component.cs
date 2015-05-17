@@ -7,14 +7,15 @@ namespace MVCOpdracht.Models
 {
     public class Component
     {
-        int ID { get; set; }
+       public int ID { get; set; }
 
-        string Categorie { get; set; }
+       public string Categorie { get; set; }
 
-        string Naam { get; set; }
-        string Link { get; set; }
-        int Aantal { get; set; }
-        double Prijs { get; set; }
+       public string Naam { get; set; }
+       public string Link { get; set; }
+       public int Aantal { get; set; }
+       public double Prijs { get; set; }
+       public double Aankoop { get; set; }
 
     }
 }
