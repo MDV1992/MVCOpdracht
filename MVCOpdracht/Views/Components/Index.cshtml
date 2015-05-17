@@ -8,7 +8,13 @@
 
 <p>
     @Html.ActionLink("Create New", "Create")
-</p>
+    @using (Html.BeginForm())
+    {
+    <p>
+        Zoeken op naam: @Html.TextBox("SearchString") <input type="submit" value="Zoeken" />
+    </p>
+    }
+    <!--http://www.asp.net/mvc/overview/getting-started/introduction/adding-search-->
 <table class="table">
     <tr>
         <th>

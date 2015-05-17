@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -16,8 +17,20 @@ namespace MVCOpdracht.Controllers
         private ComponentContext db = new ComponentContext();
 
         // GET: Components
-        public ActionResult Index()
+        public ActionResult Index(string componentsCategorie, string SortOrder, string SearchString)
         {
+
+            //http://www.asp.net/mvc/overview/getting-started/introduction/adding-search
+
+            var categorielijst = new List<string>();
+            var CategerieQuery = from d in db.Components orderby d.Categorie select d.Categorie;
+
+            categorielijst.AddRange(CategerieQuery.Distinct());
+            ViewBag.componentsCategorie = new SelectList(categorielijst);
+
+            var components = from c in db.Components select c; if (!String.IsNullOrEmpty(SearchString)) { components = components.Where(s => s.Naam.Contains(SearchString)); }
+            if (!string.IsNullOrEmpty(componentsCategorie)) { components = components.Where(x => x.Categorie == componentsCategorie); } return View(components);
+
             return View(db.Components.ToList());
         }
 

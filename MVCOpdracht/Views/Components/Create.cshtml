@@ -51,7 +51,8 @@
             @Html.LabelFor(model => model.Prijs, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Prijs, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Prijs, "", new { @class = "text-danger" })
+
+              
             </div>
         </div>
 
@@ -59,7 +60,7 @@
             @Html.LabelFor(model => model.Aankoop, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Aankoop, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Aankoop, "", new { @class = "text-danger" })
+                
             </div>
         </div>
 
