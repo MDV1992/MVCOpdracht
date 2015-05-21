@@ -7,6 +7,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.Ajax.Utilities;
 using MVCOpdracht.Models;
 using MVCOpdracht.Models.DAL;
 
@@ -17,8 +18,31 @@ namespace MVCOpdracht.Controllers
         private ComponentContext db = new ComponentContext();
 
         // GET: Components
-        public ActionResult Index(string componentsCategorie, string SortOrder, string SearchString)
+        public ActionResult Index(string SortOrder, string componentsCategorie, string SearchString)
         {
+
+            ViewBag.NameSortParm = string.IsNullOrEmpty(SortOrder) ? "naam_desc" : "";
+            ViewBag.componentsCategorieSortParm = string.IsNullOrEmpty(SortOrder) ? "categorie_desc": "";
+
+
+            var component = from c in db.Components select c;
+            switch (SortOrder)
+            {
+                default:
+                component.OrderByDescending(c => c.Naam);
+                break;
+
+                case "naam_desc" :
+                component.OrderByDescending(c => c.Naam);
+                break;
+                
+                case "categorie_desc" :
+                component.OrderByDescending(c => c.Categorie);
+                break;
+
+
+            }
+
 
             //http://www.asp.net/mvc/overview/getting-started/introduction/adding-search
 
@@ -31,7 +55,7 @@ namespace MVCOpdracht.Controllers
             var components = from c in db.Components select c; if (!String.IsNullOrEmpty(SearchString)) { components = components.Where(s => s.Naam.Contains(SearchString)); }
             if (!string.IsNullOrEmpty(componentsCategorie)) { components = components.Where(x => x.Categorie == componentsCategorie); } return View(components);
 
-            return View(db.Components.ToList());
+           // return View(db.Components.ToList());
         }
 
         // GET: Components/Details/5
