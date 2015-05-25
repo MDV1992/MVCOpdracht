@@ -1,5 +1,4 @@
-﻿@using System.Data.SqlClient
-@model IEnumerable<MVCOpdracht.Models.Component>
+﻿@model IEnumerable<MVCOpdracht.Models.Component>
 
 @{
     ViewBag.Title = "Index";
@@ -9,22 +8,14 @@
 
 <p>
     @Html.ActionLink("Create New", "Create")
-    @using (Html.BeginForm("Index", "Components", FormMethod.Get))
-    {
-        <p>
-            <!--http://www.asp.net/mvc/overview/getting-started/introduction/adding-search-->
-            Zoeken op naam: @Html.TextBox("SearchString") <input type="submit" value="Zoeken" />
-            Categorie: @Html.DropDownList("componentsCategorie", "All")
-        </p>
-    }
-    
+</p>
 <table class="table">
     <tr>
         <th>
-            @Html.ActionLink("Naam", "Index", new {SortOrder = ViewBag.NameSortParm})
+            @Html.DisplayNameFor(model => model.Categorie)
         </th>
         <th>
-            @Html.ActionLink("Categorie", "Index", new { SortOrder = ViewBag.componentsCategorieSortParm })
+            @Html.DisplayNameFor(model => model.Naam)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Link)
@@ -44,10 +35,10 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.Naam)
+            @Html.DisplayFor(modelItem => item.Categorie)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Categorie)
+            @Html.DisplayFor(modelItem => item.Naam)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Link)
