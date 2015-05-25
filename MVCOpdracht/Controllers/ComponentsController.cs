@@ -74,6 +74,8 @@ namespace MVCOpdracht.Controllers
         }
 
         // GET: Components/Create
+        [Authorize]
+        //Zorgt ervoor dat je moet inloggen.
         public ActionResult Create()
         {
             return View();
@@ -97,6 +99,8 @@ namespace MVCOpdracht.Controllers
         }
 
         // GET: Components/Edit/5
+        [Authorize]
+        //Zorgt ervoor dat je moet inloggen.
         public ActionResult Edit(int? id)
         {
             if (id == null)
