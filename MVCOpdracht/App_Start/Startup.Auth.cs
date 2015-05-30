@@ -54,9 +54,9 @@ namespace MVCOpdracht
             //   consumerKey: "",
             //   consumerSecret: "");
 
-            //app.UseFacebookAuthentication(
-            //   appId: "",
-            //   appSecret: "");
+            app.UseFacebookAuthentication(
+            appId: "658357177630704",
+            appSecret: "3a91d01e071d756dea5564ece74c7ecb");
 
             //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
             //{
